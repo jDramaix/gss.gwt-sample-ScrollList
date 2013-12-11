@@ -1,0 +1,351 @@
+/**
+ * Css fully inspired by css of stroll.js (http://lab.hakim.se/scroll-effects/)
+ */
+
+@def DEFAULT_TIME_ALL 600ms;
+@def DEFAULT_TIME_FUNCTION_ALL ease;
+@def DEFAULT_TIME_OPACITY 600ms;
+@def DEFAULT_TIME_FUNCTION_OPACITY 300ms;
+
+/*
+ * Mixins definitions
+ */
+@defmixin perspective(VALUE) {
+    -webkit-perspective: VALUE;
+       -moz-perspective: VALUE;
+        -ms-perspective: VALUE;
+         -o-perspective: VALUE;
+            perspective: VALUE;
+}
+
+@defmixin perspectiveOrigin(X, Y) {
+    -webkit-perspective-origin: X Y;
+       -moz-perspective-origin: X Y;
+        -ms-perspective-origin: X Y;
+         -o-perspective-origin: X Y;
+            perspective-origin: X Y;
+}
+
+@defmixin transition() {
+    @mixin transitionFull(DEFAULT_TIME_ALL, DEFAULT_TIME_FUNCTION_ALL, DEFAULT_TIME_OPACITY, DEFAULT_TIME_FUNCTION_OPACITY);
+}
+
+@defmixin transitionNoOpacity() {
+    @mixin transitionNoOpacityFull(DEFAULT_TIME_ALL, DEFAULT_TIME_FUNCTION_ALL);
+}
+
+@defmixin transitionFull(TIME_ALL, T_FUNC_ALL, TIME_OPACITY, T_FUNC_OPACITY) {
+    -webkit-transition: all TIME_ALL T_FUNC_ALL,opacity TIME_OPACITY T_FUNC_OPACITY;
+       -moz-transition: all TIME_ALL T_FUNC_ALL;
+        -ms-transition: all TIME_ALL T_FUNC_ALL,opacity TIME_OPACITY T_FUNC_OPACITY;
+         -o-transition: all TIME_ALL T_FUNC_ALL,opacity TIME_OPACITY T_FUNC_OPACITY;
+            transition: all TIME_ALL T_FUNC_ALL,opacity TIME_OPACITY T_FUNC_OPACITY;
+}
+
+@defmixin transitionNoOpacityFull(TIME_ALL, T_FUNC_ALL) {
+    -webkit-transition: all TIME_ALL T_FUNC_ALL;
+       -moz-transition: all TIME_ALL T_FUNC_ALL;
+        -ms-transition: all TIME_ALL T_FUNC_ALL;
+         -o-transition: all TIME_ALL T_FUNC_ALL;
+            transition: all TIME_ALL T_FUNC_ALL;
+}
+
+
+@defmixin transformOrigin(X, Y) {
+    @mixin transformOriginFull(X, Y, 0);
+}
+
+@defmixin transformOriginFull(X, Y, Z) {
+    -webkit-transform-origin: X Y Z;
+       -moz-transform-origin: X Y Z;
+        -ms-transform-origin: X Y Z;
+         -o-transform-origin: X Y Z;
+            transform-origin: X Y Z;
+}
+
+@defmixin transformTranslate(X, Y, Z) {
+    @mixin transformAll(X, Y, Z, 0, 0, 1, 0);
+}
+
+@defmixin transform(X, Y, Z, RX, SCALE) {
+    @mixin transformAll(X, Y, Z, RX, 0, SCALE, 0);
+}
+
+@defmixin transformRotateX(RX) {
+    @mixin transformAll(0, 0, 0, RX, 0, 1, 0);
+}
+
+@defmixin transformRotateY(RY) {
+    @mixin transformAll(0, 0, 0, 0, RY, 1, 0);
+}
+
+@defmixin transformSkewY(SKEW) {
+    @mixin transformAll(0, 0, 0, 0, 0, 1, SKEW);
+}
+
+@defmixin transformAll(X, Y, Z, RX, RY, SCALE, SKEWY) {
+     -webkit-transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skew(SKEWY);
+        -moz-transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skew(SKEWY);
+         -ms-transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skew(SKEWY);
+          -o-transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skew(SKEWY);
+             transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skew(SKEWY);
+}
+
+
+.item {
+    position: relative;
+}
+
+.pager {
+    border: 1px solid #CCCCCC;
+    height: 400px;
+    text-align: left;
+    width: 200px;
+    margin: 10px;
+}
+
+/**
+ * Cards styles
+ */
+.cards {
+    @mixin perspective(300px);
+    @mixin perspectiveOrigin(50%, 50%);
+}
+
+.cards .item {
+    @mixin transitionNoOpacity();
+    @mixin transformOrigin(100%, 50%);
+}
+
+.cards .item.future {
+    @mixin transform(0, 100px, -100px, 90deg, 1);
+}
+
+/**
+ * Grow styles
+ */
+.grow .item {
+     @mixin transitionNoOpacity();
+     @mixin transformOrigin(50%, 50%);
+
+}
+
+.grow .item.future {
+    @mixin transform(0, 0, 0, 0, 0.01);
+}
+
+
+/**
+ * Flip styles
+ */
+.flip {
+    @mixin perspective(400px);
+    @mixin perspectiveOrigin(50%, 50%);
+}
+
+.flip .item {
+    @mixin transition();
+    @mixin transformOrigin(0%, 0%);
+}
+
+.flip .item.future {
+    opacity: 0;
+    @mixin transformRotateX(-80deg);
+}
+
+/**
+ * Fly styles
+ */
+.fly {
+    @mixin perspective(400px);
+    @mixin perspectiveOrigin(50%, 50%);
+}
+
+.fly .item {
+    @mixin transition();
+    @mixin transformOriginFull(50%, 50%, -50px);
+}
+
+.fly .item.future {
+    opacity: 0;
+    @mixin transformRotateX(-180deg);
+}
+
+/**
+ * Reverse fly styles
+ */
+.fly-reverse {
+    @mixin perspective(400px);
+    @mixin perspectiveOrigin(50%, 50%);
+}
+
+.fly-reverse .item {
+    @mixin transition();
+    @mixin transformOriginFull(50%, 50%, -50px);
+}
+
+.fly-reverse .item.future {
+    opacity: 0;
+    @mixin transformRotateX(180deg);
+}
+
+/**
+ * Skew
+ */
+.skew {
+    @mixin perspective(600px);
+    @mixin perspectiveOrigin(0%, 50%);
+}
+.skew .item {
+    @mixin transitionNoOpacity();
+    @mixin transformOrigin(0%, 0%);
+}
+
+.skew .item.future {
+    z-index: 0;
+    @mixin transformSkewY(-30deg);
+}
+
+
+/**
+ * Helix styles
+ */
+.helix {
+    @mixin perspective(600px);
+    @mixin perspectiveOrigin(50%, 50%);
+}
+
+.helix .item {
+    @mixin transition();
+    @mixin transformOrigin(50%, 50%);
+}
+
+.helix .item.future {
+    opacity: 0;
+    @mixin transformRotateY(-180deg);
+}
+
+
+/**
+ * Wave styles
+ */
+.wave .item {
+    @mixin transitionNoOpacityFull(600ms, cubic-bezier(0.260, 0.860, 0.440, 0.985));
+}
+
+.wave .item.future {
+    -webkit-transform: translateX( -70% );
+       -moz-transform: translateX( -70% );
+        -ms-transform: translateX( -70% );
+         -o-transform: translateX( -70% );
+            transform: translateX( -70% );
+}
+
+
+/**
+ * Fan styles
+ */
+.fan .item {
+    @mixin transitionNoOpacityFull(600ms, cubic-bezier(0.390, 0.575, 0.565, 1.000));
+    @mixin transformOrigin(0%, 0%);
+}
+.fan .item.future {
+    -webkit-transform: rotate( 70deg );
+       -moz-transform: rotate( 70deg );
+        -ms-transform: rotate( 70deg );
+         -o-transform: rotate( 70deg );
+            transform: rotate( 70deg );
+}
+
+
+/**
+ * Tilt styles
+ */
+.tilt {
+    @mixin perspective(800px);
+    @mixin perspectiveOrigin(50%, 50%);
+}
+
+.tilt .item {
+    @mixin transitionFull(1000ms, cubic-bezier(0.260, 0.860, 0.440, 0.985), 300ms, ease);
+}
+
+.tilt .item.future {
+    opacity: 0;
+    @mixin transformTranslate(0, -100%, -200px);
+}
+
+
+/**
+ * Curl styles
+ */
+.curl {
+    @mixin perspective(600px);
+    @mixin perspectiveOrigin(0%, 50%);
+}
+
+.curl .item {
+    @mixin transitionFull(600ms, ease, 200ms, ease);
+    @mixin transformOrigin(0%, 0%);
+
+    -webkit-backface-visibility: hidden;
+       -moz-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+         -o-backface-visibility: hidden;
+            backface-visibility: hidden;
+}
+
+.curl .item.future {
+    opacity: 0;
+    @mixin transformRotateY(90deg);
+}
+
+.papercut {
+    @mixin perspective(600px);
+    @mixin perspectiveOrigin(0%, 0%);
+}
+.papercut .item {
+    @mixin transitionNoOpacity();
+    @mixin transformOrigin(0%, 0%);
+
+}
+
+.papercut .item.future {
+    @mixin transformSkewY(30deg);
+}
+
+/**
+ * Fade styles
+ */
+.fade .item {
+    @mixin transitionFull(0ms, linear, 350ms, ease-in-out);
+}
+
+.fade .item.future {
+    opacity: 0;
+}
+
+
+/**
+ * Twirl styles
+ */
+.twirl {
+    @mixin perspective(400px);
+    @mixin perspectiveOrigin(50%, 50%);
+}
+
+.twirl .item {
+    @mixin transitionFull(600ms, ease, 200ms, ease);
+    @mixin transformOrigin(50%, 50%);
+    }
+
+.twirl .item.future {
+    opacity: 0;
+
+    -webkit-transform: rotate3d( 80,70,10,-180deg );
+       -moz-transform: rotate3d( 80,70,10,-180deg );
+        -ms-transform: rotate3d( 80,70,10,-180deg );
+         -o-transform: rotate3d( 80,70,10,-180deg );
+            transform: rotate3d( 80,70,10,-180deg );
+}
+
