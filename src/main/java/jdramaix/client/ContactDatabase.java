@@ -163,6 +163,8 @@ public class ContactDatabase {
     public String toString() {
       return getFullName();
     }
+  }
+
     private static final String[] FEMALE_FIRST_NAMES = { "Mary", "Patricia",
         "Linda", "Barbara", "Elizabeth", "Jennifer", "Maria", "Susan",
         "Margaret", "Dorothy", "Lisa", "Nancy", "Karen", "Betty", "Helen",
@@ -193,8 +195,6 @@ public class ContactDatabase {
         "Holly", "Brittany", "Melanie", "Loretta", "Yolanda", "Jeanette",
         "Laurie", "Katie", "Kristen", "Vanessa", "Alma", "Sue", "Elsie", "Beth",
         "Jeanne" };
-
-  }
   /**
    * The singleton instance of the database.
    */

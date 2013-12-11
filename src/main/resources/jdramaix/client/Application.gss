@@ -4,8 +4,8 @@
 
 @def DEFAULT_TIME_ALL 600ms;
 @def DEFAULT_TIME_FUNCTION_ALL ease;
-@def DEFAULT_TIME_OPACITY 600ms;
-@def DEFAULT_TIME_FUNCTION_OPACITY 300ms;
+@def DEFAULT_TIME_OPACITY 300ms;
+@def DEFAULT_TIME_FUNCTION_OPACITY ease;
 
 /*
  * Mixins definitions
@@ -84,11 +84,11 @@
 }
 
 @defmixin transformAll(X, Y, Z, RX, RY, SCALE, SKEWY) {
-     -webkit-transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skew(SKEWY);
-        -moz-transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skew(SKEWY);
-         -ms-transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skew(SKEWY);
-          -o-transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skew(SKEWY);
-             transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skew(SKEWY);
+     -webkit-transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skewY(SKEWY);
+        -moz-transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skewY(SKEWY);
+         -ms-transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skewY(SKEWY);
+          -o-transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skewY(SKEWY);
+             transform: translate3d( X, Y, Z ) rotateX( RX ) rotateY( RY ) scale( SCALE ) skewY(SKEWY);
 }
 
 
@@ -150,7 +150,7 @@
 
 .flip .item.future {
     opacity: 0;
-    @mixin transformRotateX(-80deg);
+    @mixin transformRotateX(80deg);
 }
 
 /**
