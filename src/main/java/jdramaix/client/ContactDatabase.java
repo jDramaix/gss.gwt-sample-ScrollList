@@ -1,3 +1,19 @@
+/*
+ * Copyright 2013 Julien Dramaix
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
 package jdramaix.client;
 
 import com.google.gwt.user.client.Random;
@@ -147,38 +163,38 @@ public class ContactDatabase {
     public String toString() {
       return getFullName();
     }
-  }
+    private static final String[] FEMALE_FIRST_NAMES = { "Mary", "Patricia",
+        "Linda", "Barbara", "Elizabeth", "Jennifer", "Maria", "Susan",
+        "Margaret", "Dorothy", "Lisa", "Nancy", "Karen", "Betty", "Helen",
+        "Sandra", "Donna", "Carol", "Ruth", "Sharon", "Michelle", "Laura",
+        "Sarah", "Kimberly", "Deborah", "Jessica", "Shirley", "Cynthia",
+        "Angela", "Melissa", "Brenda", "Amy", "Anna", "Rebecca", "Virginia",
+        "Kathleen", "Pamela", "Martha", "Debra", "Amanda", "Stephanie",
+        "Carolyn", "Christine", "Marie", "Janet", "Catherine", "Frances", "Ann",
+        "Joyce", "Diane", "Alice", "Julie", "Heather", "Teresa", "Doris",
+        "Gloria", "Evelyn", "Jean", "Cheryl", "Mildred", "Katherine", "Joan",
+        "Ashley", "Judith", "Rose", "Janice", "Kelly", "Nicole", "Judy",
+        "Christina", "Kathy", "Theresa", "Beverly", "Denise", "Tammy", "Irene",
+        "Jane", "Lori", "Rachel", "Marilyn", "Andrea", "Kathryn", "Louise",
+        "Sara", "Anne", "Jacqueline", "Wanda", "Bonnie", "Julia", "Ruby", "Lois",
+        "Tina", "Phyllis", "Norma", "Paula", "Diana", "Annie", "Lillian",
+        "Emily", "Robin", "Peggy", "Crystal", "Gladys", "Rita", "Dawn", "Connie",
+        "Florence", "Tracy", "Edna", "Tiffany", "Carmen", "Rosa", "Cindy",
+        "Grace", "Wendy", "Victoria", "Edith", "Kim", "Sherry", "Sylvia",
+        "Josephine", "Thelma", "Shannon", "Sheila", "Ethel", "Ellen", "Elaine",
+        "Marjorie", "Carrie", "Charlotte", "Monica", "Esther", "Pauline", "Emma",
+        "Juanita", "Anita", "Rhonda", "Hazel", "Amber", "Eva", "Debbie", "April",
+        "Leslie", "Clara", "Lucille", "Jamie", "Joanne", "Eleanor", "Valerie",
+        "Danielle", "Megan", "Alicia", "Suzanne", "Michele", "Gail", "Bertha",
+        "Darlene", "Veronica", "Jill", "Erin", "Geraldine", "Lauren", "Cathy",
+        "Joann", "Lorraine", "Lynn", "Sally", "Regina", "Erica", "Beatrice",
+        "Dolores", "Bernice", "Audrey", "Yvonne", "Annette", "June", "Samantha",
+        "Marion", "Dana", "Stacy", "Ana", "Renee", "Ida", "Vivian", "Roberta",
+        "Holly", "Brittany", "Melanie", "Loretta", "Yolanda", "Jeanette",
+        "Laurie", "Katie", "Kristen", "Vanessa", "Alma", "Sue", "Elsie", "Beth",
+        "Jeanne" };
 
-  private static final String[] FEMALE_FIRST_NAMES = { "Mary", "Patricia",
-      "Linda", "Barbara", "Elizabeth", "Jennifer", "Maria", "Susan",
-      "Margaret", "Dorothy", "Lisa", "Nancy", "Karen", "Betty", "Helen",
-      "Sandra", "Donna", "Carol", "Ruth", "Sharon", "Michelle", "Laura",
-      "Sarah", "Kimberly", "Deborah", "Jessica", "Shirley", "Cynthia",
-      "Angela", "Melissa", "Brenda", "Amy", "Anna", "Rebecca", "Virginia",
-      "Kathleen", "Pamela", "Martha", "Debra", "Amanda", "Stephanie",
-      "Carolyn", "Christine", "Marie", "Janet", "Catherine", "Frances", "Ann",
-      "Joyce", "Diane", "Alice", "Julie", "Heather", "Teresa", "Doris",
-      "Gloria", "Evelyn", "Jean", "Cheryl", "Mildred", "Katherine", "Joan",
-      "Ashley", "Judith", "Rose", "Janice", "Kelly", "Nicole", "Judy",
-      "Christina", "Kathy", "Theresa", "Beverly", "Denise", "Tammy", "Irene",
-      "Jane", "Lori", "Rachel", "Marilyn", "Andrea", "Kathryn", "Louise",
-      "Sara", "Anne", "Jacqueline", "Wanda", "Bonnie", "Julia", "Ruby", "Lois",
-      "Tina", "Phyllis", "Norma", "Paula", "Diana", "Annie", "Lillian",
-      "Emily", "Robin", "Peggy", "Crystal", "Gladys", "Rita", "Dawn", "Connie",
-      "Florence", "Tracy", "Edna", "Tiffany", "Carmen", "Rosa", "Cindy",
-      "Grace", "Wendy", "Victoria", "Edith", "Kim", "Sherry", "Sylvia",
-      "Josephine", "Thelma", "Shannon", "Sheila", "Ethel", "Ellen", "Elaine",
-      "Marjorie", "Carrie", "Charlotte", "Monica", "Esther", "Pauline", "Emma",
-      "Juanita", "Anita", "Rhonda", "Hazel", "Amber", "Eva", "Debbie", "April",
-      "Leslie", "Clara", "Lucille", "Jamie", "Joanne", "Eleanor", "Valerie",
-      "Danielle", "Megan", "Alicia", "Suzanne", "Michele", "Gail", "Bertha",
-      "Darlene", "Veronica", "Jill", "Erin", "Geraldine", "Lauren", "Cathy",
-      "Joann", "Lorraine", "Lynn", "Sally", "Regina", "Erica", "Beatrice",
-      "Dolores", "Bernice", "Audrey", "Yvonne", "Annette", "June", "Samantha",
-      "Marion", "Dana", "Stacy", "Ana", "Renee", "Ida", "Vivian", "Roberta",
-      "Holly", "Brittany", "Melanie", "Loretta", "Yolanda", "Jeanette",
-      "Laurie", "Katie", "Kristen", "Vanessa", "Alma", "Sue", "Elsie", "Beth",
-      "Jeanne" };
+  }
   /**
    * The singleton instance of the database.
    */
